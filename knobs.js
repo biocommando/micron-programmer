@@ -1,5 +1,6 @@
 /*
  * Copyrights 2017-2018 by Joonas Salonpää
+ * MIT licene
  */
 
 var knobState = {mouseDownKnob: undefined, states: {}, knobCount: 0};

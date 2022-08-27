@@ -1,4 +1,4 @@
-
+// Copyrights 2022 by Joonas Salonpää. MIT license
 const midi = {
     getDevices: function (callback) {
         if (this.devices !== undefined) {
