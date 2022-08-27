@@ -1290,8 +1290,8 @@
         {
             "num": "154",
             "name": "program category",
-            "tmin": "0",
-            "tmax": "8",
+            "tmin": "2",
+            "tmax": "10",
             "notes": "",
             "options": [
                 "bass",
