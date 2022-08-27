@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>Micron/MiniAk editor</title>
+    <link rel="stylesheet" href="knobs.css">
+    <style>
+        * {
+            /*no select*/
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE10+/Edge */
+            user-select: none;
+            /* Standard */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Midi device select</h1>
+    <select id="midi-device-select"
+        onchange="midi.setDevice(document.getElementById('midi-device-select').value, ()=>{})"></select>
+    <h1>Misc</h1>
+    <div id="controls-misc"></div>
+    <h1>Mixer</h1>
+    <div id="controls-lev"></div>
+    <h1>Oscillator</h1>
+    <div id="controls-osc"></div>
+    <h1>Filter</h1>
+    <div id="controls-filter"></div>
+    <h1>Envelope</h1>
+    <div id="controls-env"></div>
+    <h1>LFO</h1>
+    <div id="controls-lfo"></div>
+    <h1>FX</h1>
+    <div id="controls-fx"></div>
+    <h1>Modulation</h1>
+    <div id="controls-mod-matrix"></div>
+    <h1>Tracking</h1>
+    <div id="controls-tracking"></div>
+    <h1>Arpeggiator</h1>
+    <div id="controls-arp"></div>
+    <script src="midi.js"></script>
+    <script src="knobs.js"></script>
+    <script>
+        midi.getDevices(devices => {
+            let html = devices.map(dev => `<option value="${dev.name}">${dev.name}</option>`).join('')
+            html = '<option>select...</option>' + html
+            document.getElementById('midi-device-select').innerHTML = html
+        })
+        let nrpns = []
+        fetch('micron-params.json')
+            .then(x => x.json())
+            .then(json => {
+                json.parameters.forEach(param => {
+                    if (typeof param.options === 'string')
+                        param.options = json.optionref[param.options]
+                })
+                nrpns = mapNrpnParamArray(json.parameters)
+                nrpns.forEach(nrpn => {
+                    let valueFormatter = rangeFormatter(nrpn.getRange().min, nrpn.getRange().max, Math.floor)
+                    if (nrpn.options)
+                        valueFormatter = optionsFormatter(nrpn.options)
+                    let root = 'controls-misc'
+                    const name = nrpn.name.toLowerCase()
+                    if (name.endsWith(' level') || name.endsWith(' balance'))
+                        root = 'controls-lev'
+                    if (name.startsWith('oscillator '))
+                        root = 'controls-osc'
+                    if (name.startsWith('filter '))
+                        root = 'controls-filter'
+                    if (name.startsWith('envelope '))
+                        root = 'controls-env'
+                    if (name.startsWith('lfo '))
+                        root = 'controls-lfo'
+                    if (name.startsWith('fx'))
+                        root = 'controls-fx'
+                    if (name.startsWith('patch '))
+                        root = 'controls-mod-matrix'
+                    if (name.startsWith('tracking '))
+                        root = 'controls-tracking'
+                    if (name.startsWith('arpeggiator '))
+                        root = 'controls-arp'
+                    createKnob(document.getElementById(root), nrpn.name, nrpn.send, null, valueFormatter)
+                })
+            })
+    </script>
+</body>
+
+</html>

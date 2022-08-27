@@ -1,0 +1,2127 @@
+{
+    "license": "This file uses material from the 'Common FAQ' article on the Ion-Micron-Miniak wiki at Fandom (https://ion-micron-miniak.fandom.com/wiki/Common_FAQ#MIDI_implementation) and is licensed under the Creative Commons Attribution-Share Alike License.",
+    "parameters": [
+        {
+            "num": "0",
+            "name": "polyphony",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "mono",
+                "poly"
+            ]
+        },
+        {
+            "num": "1",
+            "name": "unison voices",
+            "tmin": "0",
+            "tmax": "3",
+            "notes": ""
+        },
+        {
+            "num": "2",
+            "name": "unison detune",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "3",
+            "name": "portamento enabled",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "off",
+                "legato only",
+                "always"
+            ]
+        },
+        {
+            "num": "4",
+            "name": "portamento type",
+            "tmin": "0",
+            "tmax": "3",
+            "notes": "",
+            "options": [
+                "fixed",
+                "scaled",
+                "gliss fixed",
+                "gliss scaled"
+            ]
+        },
+        {
+            "num": "5",
+            "name": "portamento time",
+            "tmin": "0",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "6",
+            "name": "pitchwheel type",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "all notes",
+                "held notes"
+            ]
+        },
+        {
+            "num": "7",
+            "name": "analog drift",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "8",
+            "name": "oscillator sync type",
+            "tmin": "0",
+            "tmax": "4",
+            "notes": "",
+            "options": [
+                "off",
+                "hard 2 to 1",
+                "hard 2+3 to 1",
+                "soft 2 to 1",
+                "soft 2+3 to 1"
+            ]
+        },
+        {
+            "num": "9",
+            "name": "FM amount",
+            "tmin": "0",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "10",
+            "name": "FM type",
+            "tmin": "0",
+            "tmax": "5",
+            "notes": "",
+            "options": [
+                "lin 2 > 1",
+                "lin 2+3 > 1",
+                "lin 3 > 2 > 1",
+                "exp 2 > 1",
+                "exp 3 > 2 > 1"
+            ]
+        },
+        {
+            "num": "11",
+            "name": "oscillator 1 waveform",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "sine",
+                "tri/saw",
+                "pulse"
+            ]
+        },
+        {
+            "num": "12",
+            "name": "oscillator 1 wave shape",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "13",
+            "name": "oscillator 1 octave",
+            "tmin": "-3",
+            "tmax": "3",
+            "notes": ""
+        },
+        {
+            "num": "14",
+            "name": "oscillator 1 transpose",
+            "tmin": "-7",
+            "tmax": "7",
+            "notes": ""
+        },
+        {
+            "num": "15",
+            "name": "oscillator 1 pitch",
+            "tmin": "-999",
+            "tmax": "999",
+            "notes": ""
+        },
+        {
+            "num": "16",
+            "name": "oscillator 1 pitchwheel range",
+            "tmin": "0",
+            "tmax": "12",
+            "notes": ""
+        },
+        {
+            "num": "17",
+            "name": "oscillator 2 waveform",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "sine",
+                "tri/saw",
+                "pulse"
+            ]
+        },
+        {
+            "num": "18",
+            "name": "oscillator 2 wave shape",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "19",
+            "name": "oscillator 2 octave",
+            "tmin": "-3",
+            "tmax": "3",
+            "notes": ""
+        },
+        {
+            "num": "20",
+            "name": "oscillator 2 transpose",
+            "tmin": "-7",
+            "tmax": "7",
+            "notes": ""
+        },
+        {
+            "num": "21",
+            "name": "oscillator 2 pitch",
+            "tmin": "-999",
+            "tmax": "999",
+            "notes": ""
+        },
+        {
+            "num": "22",
+            "name": "oscillator 2 pitchwheel range",
+            "tmin": "0",
+            "tmax": "12",
+            "notes": ""
+        },
+        {
+            "num": "23",
+            "name": "oscillator 3 waveform",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "sine",
+                "tri/saw",
+                "pulse"
+            ]
+        },
+        {
+            "num": "24",
+            "name": "oscillator 3 wave shape",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "25",
+            "name": "oscillator 3 octave",
+            "tmin": "-3",
+            "tmax": "3",
+            "notes": ""
+        },
+        {
+            "num": "26",
+            "name": "oscillator 3 transpose",
+            "tmin": "-7",
+            "tmax": "7",
+            "notes": ""
+        },
+        {
+            "num": "27",
+            "name": "oscillator 3 pitch",
+            "tmin": "-999",
+            "tmax": "999",
+            "notes": ""
+        },
+        {
+            "num": "28",
+            "name": "oscillator 3 pitchwheel range",
+            "tmin": "0",
+            "tmax": "12",
+            "notes": ""
+        },
+        {
+            "num": "29",
+            "name": "Oscillator1 level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "30",
+            "name": "Oscillator2 level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "31",
+            "name": "Oscillator3 level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "32",
+            "name": "RingModulation level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "33",
+            "name": "Noise level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "34",
+            "name": "ExtIn level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "35",
+            "name": "Oscillator1 balance",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "36",
+            "name": "Oscillator2 balance",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "37",
+            "name": "Oscillator3 balance",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "38",
+            "name": "RingModulation balance",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "39",
+            "name": "Noise balance",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "40",
+            "name": "ExtIn balance",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "41",
+            "name": "series level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": "???"
+        },
+        {
+            "num": "42",
+            "name": "noise type",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "pink",
+                "white"
+            ]
+        },
+        {
+            "num": "43",
+            "name": "filter 1 type",
+            "tmin": "0",
+            "tmax": "20",
+            "notes": "",
+            "options": "filtertype"
+        },
+        {
+            "num": "44",
+            "name": "filter 1 frequency",
+            "tmin": "0",
+            "tmax": "1023",
+            "notes": ""
+        },
+        {
+            "num": "45",
+            "name": "filter 1 resonance",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "46",
+            "name": "filter 1 key track",
+            "tmin": "-100",
+            "tmax": "200",
+            "notes": ""
+        },
+        {
+            "num": "47",
+            "name": "filter 1 envelope amount",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "48",
+            "name": "filter 2 relative to 1",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "no",
+                "yes"
+            ]
+        },
+        {
+            "num": "49",
+            "name": "filter 2 type",
+            "tmin": "0",
+            "tmax": "20",
+            "notes": "",
+            "options": "filtertype"
+        },
+        {
+            "num": "50",
+            "name": "filter 2 frequency absolute",
+            "tmin": "0",
+            "tmax": "1023",
+            "notes": ""
+        },
+        {
+            "num": "51",
+            "name": "filter 2 resonance",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "52",
+            "name": "filter 2 key track",
+            "tmin": "-100",
+            "tmax": "200",
+            "notes": ""
+        },
+        {
+            "num": "53",
+            "name": "filter 2 envelope amount",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "54",
+            "name": "filter 1 level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "55",
+            "name": "filter 2 level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "56",
+            "name": "pre-filter level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "57",
+            "name": "filter 1 pan",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "58",
+            "name": "filter 2 pan",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "59",
+            "name": "pre-filter pan",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "60",
+            "name": "pre-filter source",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "",
+            "options": [
+                "osc1",
+                "osc2",
+                "osc3",
+                "fltr 1 input mix",
+                "fltr 2 input mix",
+                "ringmod",
+                "noise"
+            ]
+        },
+        {
+            "num": "61",
+            "name": "filter 1 invert phase",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": ""
+        },
+        {
+            "num": "62",
+            "name": "drive type",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "",
+            "options": [
+                "bypass",
+                "compressor",
+                "rms limiter",
+                "tube overdrive",
+                "distortion",
+                "tube amp",
+                "fuzz pedal"
+            ]
+        },
+        {
+            "num": "63",
+            "name": "drive level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "64",
+            "name": "program level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "65",
+            "name": "fx mix",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "66",
+            "name": "envelope 1 attack time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "67",
+            "name": "envelope 1 attack slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "68",
+            "name": "envelope 1 decay time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "69",
+            "name": "envelope 1 decay slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "70",
+            "name": "envelope 1 sustain time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "71",
+            "name": "envelope 1 sustain level",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "72",
+            "name": "envelope 1 release time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "73",
+            "name": "envelope 1 release slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "74",
+            "name": "envelope 1 velocity to envelope",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "75",
+            "name": "envelope 1 reset every note",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "76",
+            "name": "envelope 1 free run",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "77",
+            "name": "envelope 1 loop",
+            "tmin": "0",
+            "tmax": "3",
+            "notes": "",
+            "options": [
+                "off",
+                "attack/decay",
+                "entire envelope",
+                "while note held"
+            ]
+        },
+        {
+            "num": "78",
+            "name": "envelope 1 sustain pedal",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "79",
+            "name": "envelope 2 attack time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "80",
+            "name": "envelope 2 attack slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "81",
+            "name": "envelope 2 decay time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "82",
+            "name": "envelope 2 decay slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "83",
+            "name": "envelope 2 sustain time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "84",
+            "name": "envelope 2 sustain level",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "85",
+            "name": "envelope 2 release time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "86",
+            "name": "envelope 2 release slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "87",
+            "name": "envelope 2 velocity to envelope",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "88",
+            "name": "envelope 2 reset every note",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "89",
+            "name": "envelope 2 free run",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "90",
+            "name": "envelope 2 loop",
+            "tmin": "0",
+            "tmax": "3",
+            "notes": ""
+        },
+        {
+            "num": "91",
+            "name": "envelope 2 sustain pedal",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "92",
+            "name": "envelope 3 attack time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "93",
+            "name": "envelope 3 attack slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "94",
+            "name": "envelope 3 decay time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "95",
+            "name": "envelope 3 decay slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "96",
+            "name": "envelope 3 sustain time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "97",
+            "name": "envelope 3 sustain level",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "98",
+            "name": "envelope 3 release time",
+            "tmin": "0",
+            "tmax": "255",
+            "notes": ""
+        },
+        {
+            "num": "99",
+            "name": "envelope 3 release slope",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "",
+            "options": [
+                "linear",
+                "+exp",
+                "-exp"
+            ]
+        },
+        {
+            "num": "100",
+            "name": "envelope 3 velocity to envelope",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "101",
+            "name": "envelope 3 reset every note",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "102",
+            "name": "envelope 3 free run",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "103",
+            "name": "envelope 3 loop",
+            "tmin": "0",
+            "tmax": "3",
+            "notes": ""
+        },
+        {
+            "num": "104",
+            "name": "envelope 3 sustain pedal",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "off",
+                "on"
+            ]
+        },
+        {
+            "num": "105",
+            "name": "lfo 1 tempo sync",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "fixed rate",
+                "tempo sync"
+            ]
+        },
+        {
+            "num": "106",
+            "name": "lfo 1 rate (free)",
+            "tmin": "0",
+            "tmax": "1023",
+            "notes": ""
+        },
+        {
+            "num": "107",
+            "name": "lfo 1 reset",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "",
+            "options": [
+                "mono (per pgm)",
+                "poly (per voice)",
+                "key mono",
+                "key poly",
+                "legato mono",
+                "legato poly",
+                "tempo lock"
+            ]
+        },
+        {
+            "num": "108",
+            "name": "m1 slider influencelfo 1",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "109",
+            "name": "lfo 2 tempo sync",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "fixed rate",
+                "tempo sync"
+            ]
+        },
+        {
+            "num": "110",
+            "name": "lfo 2 rate (free)",
+            "tmin": "0",
+            "tmax": "1023",
+            "notes": ""
+        },
+        {
+            "num": "111",
+            "name": "lfo 2 reset",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "",
+            "options": [
+                "mono (per pgm)",
+                "poly (per voice)",
+                "key mono",
+                "key poly",
+                "legato mono",
+                "legato poly",
+                "tempo lock"
+            ]
+        },
+        {
+            "num": "112",
+            "name": "m1 slider influencelfo 2",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "113",
+            "name": "S&H tempo sync",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": "",
+            "options": [
+                "fixed rate",
+                "follow tempo"
+            ]
+        },
+        {
+            "num": "114",
+            "name": "S&H rate(free)",
+            "tmin": "0",
+            "tmax": "1023",
+            "notes": ""
+        },
+        {
+            "num": "115",
+            "name": "S&H reset",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "",
+            "options": [
+                "mono (per pgm)",
+                "poly (per voice)",
+                "key mono",
+                "key poly",
+                "legato mono",
+                "legato poly",
+                "tempo lock"
+            ]
+        },
+        {
+            "num": "116",
+            "name": "S&H input",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": ""
+        },
+        {
+            "num": "117",
+            "name": "S&H smoothing",
+            "tmin": "0",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "118",
+            "name": "tracking input",
+            "tmin": "0",
+            "tmax": "111",
+            "notes": ""
+        },
+        {
+            "num": "119",
+            "name": "tracking preset",
+            "tmin": "0",
+            "tmax": "9",
+            "notes": ""
+        },
+        {
+            "num": "120",
+            "name": "tracking gridsize",
+            "tmin": "0",
+            "tmax": "1",
+            "notes": ""
+        },
+        {
+            "num": "121",
+            "name": "tracking point -16",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "122",
+            "name": "tracking point -15",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "123",
+            "name": "tracking point -14",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "124",
+            "name": "tracking point -13",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "125",
+            "name": "tracking point -12",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "126",
+            "name": "tracking point -11",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "127",
+            "name": "tracking point -10",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "128",
+            "name": "tracking point -9",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "129",
+            "name": "tracking point -8",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "130",
+            "name": "tracking point -7",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "131",
+            "name": "tracking point -6",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "132",
+            "name": "tracking point -5",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "133",
+            "name": "tracking point -4",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "134",
+            "name": "tracking point -3",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "135",
+            "name": "tracking point -2",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "136",
+            "name": "tracking point -1",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "137",
+            "name": "tracking point 0",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "138",
+            "name": "tracking point 1",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "139",
+            "name": "tracking point 2",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "140",
+            "name": "tracking point 3",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "141",
+            "name": "tracking point 4",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "142",
+            "name": "tracking point 5",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "143",
+            "name": "tracking point 6",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "144",
+            "name": "tracking point 7",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "145",
+            "name": "tracking point 8",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "146",
+            "name": "tracking point 9",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "147",
+            "name": "tracking point 10",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "148",
+            "name": "tracking point 11",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "149",
+            "name": "tracking point 12",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "150",
+            "name": "tracking point 13",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "151",
+            "name": "tracking point 14",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "152",
+            "name": "tracking point 15",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "153",
+            "name": "tracking point 16",
+            "tmin": "-100",
+            "tmax": "100",
+            "notes": ""
+        },
+        {
+            "num": "154",
+            "name": "program category",
+            "tmin": "0",
+            "tmax": "8",
+            "notes": "",
+            "options": [
+                "bass",
+                "lead",
+                "pad",
+                "string",
+                "brass",
+                "key",
+                "comp",
+                "drum",
+                "sfx"
+            ]
+        },
+        {
+            "num": "155",
+            "name": "Knob X",
+            "tmin": "0",
+            "tmax": "161",
+            "notes": ""
+        },
+        {
+            "num": "156",
+            "name": "Knob Y",
+            "tmin": "0",
+            "tmax": "161",
+            "notes": ""
+        },
+        {
+            "num": "157",
+            "name": "Knob Z",
+            "tmin": "0",
+            "tmax": "161",
+            "notes": ""
+        },
+        {
+            "num": "158",
+            "name": "filter 2 frequency relative",
+            "tmin": "-400",
+            "tmax": "400",
+            "notes": ""
+        },
+        {
+            "num": "159",
+            "name": "lfo 1 rate (follow tempo)",
+            "tmin": "0",
+            "tmax": "24",
+            "notes": ""
+        },
+        {
+            "num": "160",
+            "name": "lfo 2 rate (follow tempo)",
+            "tmin": "0",
+            "tmax": "24",
+            "notes": ""
+        },
+        {
+            "num": "161",
+            "name": "S&H rate(synced)",
+            "tmin": "0",
+            "tmax": "24",
+            "notes": ""
+        },
+        {
+            "num": "180",
+            "name": "patch cable 1 source",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "181",
+            "name": "patch cable 1 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "182",
+            "name": "patch cable 1 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "183",
+            "name": "patch cable 1 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "184",
+            "name": "patch cable 2 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "185",
+            "name": "patch cable 2 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "186",
+            "name": "patch cable 2 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "187",
+            "name": "patch cable 2 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "188",
+            "name": "patch cable 3 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "189",
+            "name": "patch cable 3 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "190",
+            "name": "patch cable 3 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "191",
+            "name": "patch cable 3 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "192",
+            "name": "patch cable 4 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "193",
+            "name": "patch cable 4 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "194",
+            "name": "patch cable 4 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "195",
+            "name": "patch cable 4 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "196",
+            "name": "patch cable 5 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "197",
+            "name": "patch cable 5 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "198",
+            "name": "patch cable 5 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "199",
+            "name": "patch cable 5 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "200",
+            "name": "patch cable 6 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "201",
+            "name": "patch cable 6 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "202",
+            "name": "patch cable 6 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "203",
+            "name": "patch cable 6 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "204",
+            "name": "patch cable 7 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "205",
+            "name": "patch cable 7 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "206",
+            "name": "patch cable 7 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "207",
+            "name": "patch cable 7 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "208",
+            "name": "patch cable 8 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "209",
+            "name": "patch cable 8 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "210",
+            "name": "patch cable 8 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "211",
+            "name": "patch cable 8 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "212",
+            "name": "patch cable 9 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "213",
+            "name": "patch cable 9 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "214",
+            "name": "patch cable 9 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "215",
+            "name": "patch cable 9 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "216",
+            "name": "patch cable 10 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "217",
+            "name": "patch cable 10 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "218",
+            "name": "patch cable 10 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "219",
+            "name": "patch cable 10 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "220",
+            "name": "patch cable 11 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "221",
+            "name": "patch cable 11 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "222",
+            "name": "patch cable 11 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "223",
+            "name": "patch cable 11 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "224",
+            "name": "patch cable 12 source",
+            "tmin": "0",
+            "tmax": "114",
+            "notes": "",
+            "options": "modsrc"
+        },
+        {
+            "num": "225",
+            "name": "patch cable 12 destination",
+            "tmin": "0",
+            "tmax": "77",
+            "notes": "",
+            "options": "moddst"
+        },
+        {
+            "num": "226",
+            "name": "patch cable 12 level",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "227",
+            "name": "patch cable 12 offset",
+            "tmin": "-1000",
+            "tmax": "1000",
+            "notes": ""
+        },
+        {
+            "num": "230",
+            "name": "fx balance",
+            "tmin": "-50",
+            "tmax": "50",
+            "notes": ""
+        },
+        {
+            "num": "231",
+            "name": "fx type 0",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "",
+            "options": [
+                "bypass",
+                "chorus",
+                "flanger theta",
+                "flanger thru-0",
+                "phaser super",
+                "phaser string",
+                "vocoder 40-band"
+            ]
+        },
+        {
+            "num": "232",
+            "name": "fx param a",
+            "tmin": "-128",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "233",
+            "name": "fx param b",
+            "tmin": "-128",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "234",
+            "name": "fx param c",
+            "tmin": "-128",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "235",
+            "name": "fx param d",
+            "tmin": "-128",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "236",
+            "name": "fx param e",
+            "tmin": "-128",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "237",
+            "name": "fx param f",
+            "tmin": "-128",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "238",
+            "name": "fx param g",
+            "tmin": "-128",
+            "tmax": "127",
+            "notes": ""
+        },
+        {
+            "num": "239",
+            "name": "fx param h lfo synced",
+            "tmin": "0",
+            "tmax": "24",
+            "notes": ""
+        },
+        {
+            "num": "245",
+            "name": "fx2 type",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "",
+            "options": [
+                "bypass",
+                "delay mono",
+                "delay stereo",
+                "delay split L/R",
+                "reverb hall",
+                "reverb plate",
+                "reverb room"
+            ]
+        },
+        {
+            "num": "246",
+            "name": "fx2 param a",
+            "tmin": "-8192",
+            "tmax": "8191",
+            "notes": "***"
+        },
+        {
+            "num": "247",
+            "name": "fx2 param b",
+            "tmin": "-8192",
+            "tmax": "8191",
+            "notes": "***"
+        },
+        {
+            "num": "248",
+            "name": "fx2 param c",
+            "tmin": "-8192",
+            "tmax": "8191",
+            "notes": "***"
+        },
+        {
+            "num": "249",
+            "name": "fx2 param d",
+            "tmin": "-8192",
+            "tmax": "8191",
+            "notes": "***"
+        },
+        {
+            "num": "250",
+            "name": "fx param a synced",
+            "tmin": "0",
+            "tmax": "24",
+            "notes": ""
+        },
+        {
+            "num": "512",
+            "name": "arpeggiator pattern",
+            "tmin": "0",
+            "tmax": "31",
+            "notes": "**"
+        },
+        {
+            "num": "513",
+            "name": "arpeggiator pattern multiplier",
+            "tmin": "0",
+            "tmax": "6",
+            "notes": "**"
+        },
+        {
+            "num": "514",
+            "name": "arpeggiator length",
+            "tmin": "0",
+            "tmax": "14",
+            "notes": "**"
+        },
+        {
+            "num": "515",
+            "name": "arpeggiator octave range",
+            "tmin": "0",
+            "tmax": "4",
+            "notes": "**"
+        },
+        {
+            "num": "516",
+            "name": "arpeggiator octave span",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "**"
+        },
+        {
+            "num": "517",
+            "name": "arpeggiator note order",
+            "tmin": "0",
+            "tmax": "5",
+            "notes": "**"
+        },
+        {
+            "num": "518",
+            "name": "arpeggiator enabled",
+            "tmin": "0",
+            "tmax": "2",
+            "notes": "**"
+        },
+        {
+            "num": "519",
+            "name": "arpeggiator program tempo",
+            "tmin": "500",
+            "tmax": "2500",
+            "notes": "**"
+        }
+    ],
+    "optionref": {
+        "modsrc": [
+            "none",
+            "aftertch",
+            "env 1",
+            "env 2",
+            "env 3",
+            "exp pedal",
+            "keytrack",
+            "keytrack xt",
+            "lfo1 saw",
+            "lfo1 c saw",
+            "lfo1 sin",
+            "lfo1 c sin",
+            "lfo1 sqr",
+            "lfo1 c sqr",
+            "lfo1 tri",
+            "lfo1 c tri",
+            "lfo2 saw",
+            "lfo2 c saw",
+            "lfo2 sin",
+            "lfo2 c sin",
+            "lfo2 sqr",
+            "lfo2 c sqr",
+            "lfo2 tri",
+            "lfo2 c tri",
+            "lfo3 saw",
+            "lfo3 c saw",
+            "lfo3 sin",
+            "lfo3 c sin",
+            "lfo3 sqr",
+            "lfo3 c sqr",
+            "lfo3 tri",
+            "lfo3 c tri",
+            "m1slider",
+            "m2slider",
+            "p wheel",
+            "porta efx",
+            "porta lev",
+            "pressure",
+            "random global",
+            "random voice",
+            "s/h",
+            "sustpedal",
+            "track",
+            "track stp",
+            "velocity",
+            "velocity up",
+            "cc 1",
+            "cc 2",
+            "cc 3",
+            "cc 4",
+            "cc 7",
+            "cc 8",
+            "cc 9",
+            "cc 10",
+            "cc 11",
+            "cc 12",
+            "cc 13",
+            "cc 14",
+            "cc 15",
+            "cc 16",
+            "cc 17",
+            "cc 18",
+            "cc 19",
+            "cc 20",
+            "cc 21",
+            "cc 22",
+            "cc 23",
+            "cc 24",
+            "cc 25",
+            "cc 26",
+            "cc 27",
+            "cc 28",
+            "cc 29",
+            "cc 30",
+            "cc 31",
+            "cc 66",
+            "cc 67",
+            "cc 68",
+            "cc 69",
+            "cc 70",
+            "cc 71",
+            "cc 72",
+            "cc 73",
+            "cc 74",
+            "cc 75",
+            "cc 76",
+            "cc 77",
+            "cc 78",
+            "cc 79",
+            "cc 80",
+            "cc 81",
+            "cc 82",
+            "cc 83",
+            "cc 84",
+            "cc 85",
+            "cc 86",
+            "cc 87",
+            "cc 88",
+            "cc 89",
+            "cc 90",
+            "cc 91",
+            "cc 92",
+            "cc 93",
+            "cc 94",
+            "cc 95",
+            "cc 102",
+            "cc 103",
+            "cc 104",
+            "cc 105",
+            "cc 106",
+            "cc 107",
+            "cc 108",
+            "cc 109",
+            "cc 110",
+            "cc 111",
+            "cc 112",
+            "cc 113",
+            "cc 114",
+            "cc 115",
+            "cc 116",
+            "cc 117",
+            "cc 118",
+            "cc 119"
+        ],
+        "moddst": [
+            "pitch",
+            "pitch nar",
+            "fm amount",
+            "osc1 pitch",
+            "osc1 nar",
+            "osc1 shp",
+            "osc2 pitch",
+            "osc2 nar",
+            "osc2 shp",
+            "osc3 pitch",
+            "osc3 nar",
+            "osc3 shp",
+            "osc1 level",
+            "osc2 level",
+            "osc3 level",
+            "ring level",
+            "noise level",
+            "ext in level",
+            "osc1 balance",
+            "osc2 balance",
+            "osc3 balance",
+            "ring balance",
+            "noise balance",
+            "ext in balance",
+            "f1f2 level",
+            "porta level",
+            "unison detune",
+            "flt1 frq",
+            "flt1 res",
+            "flt1 env",
+            "flt1 ktk",
+            "flt2 frq",
+            "flt2 res",
+            "flt2 env",
+            "flt2 ktk",
+            "flt1 lev",
+            "flt2 lev",
+            "pflt lev",
+            "flt1 pan",
+            "flt2 pan",
+            "pflt pan",
+            "drive level",
+            "program level",
+            "pan",
+            "fx mix",
+            "fx1 a",
+            "fx1 b",
+            "fx1 c",
+            "fx1 d",
+            "env1 amp",
+            "env1 rate",
+            "env1 attack",
+            "env1 decay",
+            "env1 sust time",
+            "env1 sust level",
+            "env1 release",
+            "env2 amp",
+            "env2 rate",
+            "env2 attack",
+            "env2 decay",
+            "env2 sust time",
+            "env2 sust level",
+            "env2 release",
+            "env3 amp",
+            "env3 rate",
+            "env3 attack",
+            "env3 decay",
+            "env3 sust time",
+            "env3 sust level",
+            "env3 release",
+            "lfo1 rate",
+            "lfo1 amp",
+            "lfo2 rate",
+            "lfo2 amp",
+            "s/h rate",
+            "s/h sm",
+            "s/h amp"
+        ],
+        "filtertype": [
+            "bypass",
+            "lowpass ob_2pole",
+            "lowpass tb_3pole",
+            "lowpass mg_4pole",
+            "lowpass rp_4pole",
+            "lowpass jp_4pole",
+            "lowpass al_8pole",
+            "bandpass ob_2pol",
+            "bandpass al_6pol",
+            "bandbass 8vedual",
+            "bandbass bndlimit",
+            "highpass ob_2pol",
+            "highpass op_4pol",
+            "vocal formant 1",
+            "vocal formant 2",
+            "vocal formant 3",
+            "comb 1",
+            "comb 2",
+            "comb 3",
+            "comb 4",
+            "phase warp"
+        ]
+    }
+}
