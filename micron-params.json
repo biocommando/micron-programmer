@@ -17,7 +17,13 @@
             "name": "unison voices",
             "tmin": "0",
             "tmax": "3",
-            "notes": ""
+            "notes": "",
+            "options": [
+                "one voice/note",
+                "2 voices/note",
+                "4 voices/note",
+                "all voices/note"
+            ]
         },
         {
             "num": "2",
