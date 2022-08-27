@@ -1358,7 +1358,7 @@
             "num": "180",
             "name": "patch cable 1 source",
             "tmin": "0",
-            "tmax": "77",
+            "tmax": "114",
             "notes": "",
             "options": "modsrc"
         },
@@ -1942,14 +1942,6 @@
             "lfo2 c sqr",
             "lfo2 tri",
             "lfo2 c tri",
-            "lfo3 saw",
-            "lfo3 c saw",
-            "lfo3 sin",
-            "lfo3 c sin",
-            "lfo3 sqr",
-            "lfo3 c sqr",
-            "lfo3 tri",
-            "lfo3 c tri",
             "m1slider",
             "m2slider",
             "p wheel",
@@ -2043,6 +2035,7 @@
             "cc 119"
         ],
         "moddst": [
+            "none",
             "pitch",
             "pitch nar",
             "fm amount",
