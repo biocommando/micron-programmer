@@ -1812,29 +1812,29 @@
         {
             "num": "246",
             "name": "fx2 param a",
-            "tmin": "-8192",
-            "tmax": "8191",
+            "tmin": "0",
+            "tmax": "680",
             "notes": "***"
         },
         {
             "num": "247",
             "name": "fx2 param b",
-            "tmin": "-8192",
-            "tmax": "8191",
+            "tmin": "0",
+            "tmax": "100",
             "notes": "***"
         },
         {
             "num": "248",
             "name": "fx2 param c",
-            "tmin": "-8192",
-            "tmax": "8191",
+            "tmin": "0",
+            "tmax": "100",
             "notes": "***"
         },
         {
             "num": "249",
             "name": "fx2 param d",
-            "tmin": "-8192",
-            "tmax": "8191",
+            "tmin": "0",
+            "tmax": "340",
             "notes": "***"
         },
         {
