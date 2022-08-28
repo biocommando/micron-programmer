@@ -41,8 +41,8 @@ function createNrpnParam (num) {
     let cachedValue = undefined
     return {
         setChannel: c => ch = c,
-        send: value => {
-            value = range.min + (range.max - range.min) * value
+        send: (value, scaler) => {
+            value = scaler ? scaler(value) : range.min + (range.max - range.min) * value
             value = Math.floor(value)
             value = Math.min(value, (1 << 13) - 1)
             value = Math.max(value, ~((1 << 13) - 1))

@@ -45,6 +45,7 @@
     <div id="controls-arp"></div>
     <script src="midi.js"></script>
     <script src="knobs.js"></script>
+    <script src="params-dropdown.js"></script>
     <script>
         midi.getDevices(devices => {
             let html = devices.map(dev => `<option value="${dev.name}">${dev.name}</option>`).join('')
@@ -84,7 +85,10 @@
                         root = 'controls-tracking'
                     if (name.startsWith('arpeggiator '))
                         root = 'controls-arp'
-                    createKnob(document.getElementById(root), nrpn.name, nrpn.send, null, valueFormatter)
+                    if (name.match(/patch cable \d (source|destination)/))
+                        createParamDropdown(document.getElementById(root), nrpn.options, val => nrpn.send(val, x => x))
+                    else
+                        createKnob(document.getElementById(root), nrpn.name, nrpn.send, null, valueFormatter)
                 })
             })
     </script>
