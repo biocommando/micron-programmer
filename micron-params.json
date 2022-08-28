@@ -123,11 +123,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "sine",
-                "tri/saw",
-                "pulse"
-            ]
+            "options": "osc waveforms"
         },
         {
             "num": "12",
@@ -170,11 +166,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "sine",
-                "tri/saw",
-                "pulse"
-            ]
+            "options": "osc waveforms"
         },
         {
             "num": "18",
@@ -217,11 +209,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "sine",
-                "tri/saw",
-                "pulse"
-            ]
+            "options": "osc waveforms"
         },
         {
             "num": "24",
@@ -503,10 +491,14 @@
         },
         {
             "num": "61",
-            "name": "filter 1 invert phase",
+            "name": "filter 1 sign",
             "tmin": "0",
             "tmax": "1",
-            "notes": ""
+            "notes": "",
+            "options": [
+                "positive",
+                "negative"
+            ]
         },
         {
             "num": "62",
@@ -558,11 +550,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "68",
@@ -577,11 +565,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "70",
@@ -610,11 +594,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "74",
@@ -682,11 +662,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "81",
@@ -701,11 +677,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "83",
@@ -734,11 +706,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "87",
@@ -800,11 +768,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "94",
@@ -819,11 +783,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "96",
@@ -852,11 +812,7 @@
             "tmin": "0",
             "tmax": "2",
             "notes": "",
-            "options": [
-                "linear",
-                "+exp",
-                "-exp"
-            ]
+            "options": "slope"
         },
         {
             "num": "100",
@@ -1917,6 +1873,16 @@
         }
     ],
     "optionref": {
+        "slope": [
+            "linear",
+            "+exp",
+            "-exp"
+        ],
+        "osc waveforms": [
+            "sine",
+            "tri/saw",
+            "pulse"
+        ],
         "modsrc": [
             "none",
             "aftertch",
