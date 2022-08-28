@@ -1,6 +1,7 @@
 function
 createParamDropdown             (
 root                            ,
+label                           ,
 options                         ,
 onChange
                                 ){
@@ -18,9 +19,14 @@ createParamDropdown             .
 count                           
 const
 html                            =`
+<div class="param-dropdown">
+                                ${
+label                           }
+<br/>
 <select id="pdropdown-${id}">
                                 ${
-options.map                     ((
+options                         .
+map                             ((
 x                               ,
 i                               ) => `
 <option value="${i}">
@@ -30,7 +36,7 @@ ${x}
 join                            (
 ''                              )}
 </select>
-                                `
+</div>                          `
 root                            .
 innerHTML                       +=
 html

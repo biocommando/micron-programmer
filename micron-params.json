@@ -219,19 +219,19 @@
         },
         {
             "num": 29,
-            "name": "Oscillator1 level",
+            "name": "Oscillator 1 level",
             "tmin": 0,
             "tmax": 100
         },
         {
             "num": 30,
-            "name": "Oscillator2 level",
+            "name": "Oscillator 2 level",
             "tmin": 0,
             "tmax": 100
         },
         {
             "num": 31,
-            "name": "Oscillator3 level",
+            "name": "Oscillator 3 level",
             "tmin": 0,
             "tmax": 100
         },
@@ -255,19 +255,19 @@
         },
         {
             "num": 35,
-            "name": "Oscillator1 balance",
+            "name": "Oscillator 1 balance",
             "tmin": "-50",
             "tmax": 50
         },
         {
             "num": 36,
-            "name": "Oscillator2 balance",
+            "name": "Oscillator 2 balance",
             "tmin": "-50",
             "tmax": 50
         },
         {
             "num": 37,
-            "name": "Oscillator3 balance",
+            "name": "Oscillator 3 balance",
             "tmin": "-50",
             "tmax": 50
         },
@@ -1531,7 +1531,7 @@
         },
         {
             "num": 245,
-            "name": "fx2 type",
+            "name": "fx 2 type",
             "tmin": 0,
             "tmax": 6,
             "options": [
@@ -1546,25 +1546,25 @@
         },
         {
             "num": 246,
-            "name": "fx2 param a",
+            "name": "fx 2 param a",
             "tmin": 0,
             "tmax": 680
         },
         {
             "num": 247,
-            "name": "fx2 param b",
+            "name": "fx 2 param b",
             "tmin": 0,
             "tmax": 100
         },
         {
             "num": 248,
-            "name": "fx2 param c",
+            "name": "fx 2 param c",
             "tmin": 0,
             "tmax": 100
         },
         {
             "num": 249,
-            "name": "fx2 param d",
+            "name": "fx 2 param d",
             "tmin": 0,
             "tmax": 340
         },

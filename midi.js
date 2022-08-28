@@ -58,7 +58,8 @@ function createNrpnParam (num) {
             midi.midiCmd(cc(6, (value >> 7) & 0x7F))
         },
         name: 'unknown',
-        getRange: () => range
+        getRange: () => range,
+        clearCache: () => cachedValue = undefined
     }
 }
 

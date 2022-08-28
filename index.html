@@ -5,7 +5,7 @@
     <title>Micron/MiniAk editor</title>
     <link rel="stylesheet" href="knobs.css">
     <style>
-        * {
+        #controls {
             /*no select*/
             -webkit-user-select: none;
             /* Safari */
@@ -16,33 +16,61 @@
             user-select: none;
             /* Standard */
         }
+
+        .param-dropdown {
+            display: inline-block;
+            border: 1px solid black;
+            font-weight: bold;
+            padding: 15px;
+            margin: 15px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Midi device select</h1>
-    <select id="midi-device-select"
-        onchange="midi.setDevice(document.getElementById('midi-device-select').value, ()=>{})"></select>
-    <h1>Misc</h1>
-    <div id="controls-misc"></div>
-    <h1>Mixer</h1>
-    <div id="controls-lev"></div>
-    <h1>Oscillator</h1>
-    <div id="controls-osc"></div>
-    <h1>Filter</h1>
-    <div id="controls-filter"></div>
-    <h1>Envelope</h1>
-    <div id="controls-env"></div>
-    <h1>LFO</h1>
-    <div id="controls-lfo"></div>
-    <h1>FX</h1>
-    <div id="controls-fx"></div>
-    <h1>Modulation</h1>
-    <div id="controls-mod-matrix"></div>
-    <h1>Tracking</h1>
-    <div id="controls-tracking"></div>
-    <h1>Arpeggiator</h1>
-    <div id="controls-arp"></div>
+    <div id="controls">
+        <h1>Midi device select</h1>
+        <select id="midi-device-select"
+            onchange="midi.setDevice(document.getElementById('midi-device-select').value, ()=>{})"></select>
+        <button onclick="clearNrpnCache()">Clear cached values</button>
+        <h1>Misc</h1>
+        <div id="controls-misc"></div>
+        <h1>Mixer</h1>
+        <div id="controls-lev"></div>
+        <h1>Oscillator</h1>
+        <div id="controls-osc"></div>
+        <h1>Filter</h1>
+        <div id="controls-filter"></div>
+        <h1>Envelope</h1>
+        <div id="controls-env"></div>
+        <h1>LFO</h1>
+        <div id="controls-lfo"></div>
+        <h1>FX</h1>
+        <div id="controls-fx"></div>
+        <h1>Modulation</h1>
+        <div id="controls-mod-matrix"></div>
+        <h1>Tracking</h1>
+        <div id="controls-tracking"></div>
+        <h1>Arpeggiator</h1>
+        <div id="controls-arp"></div>
+    </div>
+    <h1>Automation editor</h1>
+    <div>
+        <textarea id="automation" rows="10" cols="40">
+# Drive type
+drty=compressor
+# Drive level
+drle=0.5
+        </textarea>
+        <pre id="automation-output"></pre>
+        <div>
+            <button onclick="sendAutomation()">Execute</button>
+        </div>
+        <details>
+            <summary>List of short names</summary>
+            <pre id="short-name-list"></pre>
+        </details>
+    </div>
     <script src="midi.js"></script>
     <script src="knobs.js"></script>
     <script src="params-dropdown.js"></script>
@@ -52,7 +80,7 @@
             html = '<option>select...</option>' + html
             document.getElementById('midi-device-select').innerHTML = html
         })
-        let nrpns = []
+        let nrpns = [], shortNames = {}
         fetch('micron-params.json')
             .then(x => x.json())
             .then(json => {
@@ -61,12 +89,27 @@
                         param.options = json.optionref[param.options]
                 })
                 nrpns = mapNrpnParamArray(json.parameters)
+                let modMatrixPatchCableIdx = 0
                 nrpns.forEach(nrpn => {
+                    const name = nrpn.name.toLowerCase()
+
+                    let shortName = name
+                        .replace(/\-(\d)/g, 'm $1')
+                        .replace(/[^a-z0-9]/g, ' ')
+                        .split(' ')
+                        .map(x => x.trim())
+                        .filter(Boolean)
+                        .map(x => x.substr(0, 2))
+                        .join('')
+                    while (shortNames[shortName])
+                        shortName = '_' + shortName
+                    shortNames[shortName] = nrpn
+                    nrpn.shortName = shortName
+
                     let valueFormatter = rangeFormatter(nrpn.getRange().min, nrpn.getRange().max, Math.floor)
                     if (nrpn.options)
                         valueFormatter = optionsFormatter(nrpn.options)
                     let root = 'controls-misc'
-                    const name = nrpn.name.toLowerCase()
                     if (name.endsWith(' level') || name.endsWith(' balance'))
                         root = 'controls-lev'
                     if (name.startsWith('oscillator '))
@@ -85,12 +128,55 @@
                         root = 'controls-tracking'
                     if (name.startsWith('arpeggiator '))
                         root = 'controls-arp'
-                    if (name.match(/patch cable \d (source|destination)/))
-                        createParamDropdown(document.getElementById(root), nrpn.options, val => nrpn.send(val, x => x))
+                    if (name.match(/patch cable \d+? (source|destination)/)) {
+                        if (name.endsWith('source'))
+                            document.getElementById('controls-mod-matrix').innerHTML += `<h2>Modulation #${++modMatrixPatchCableIdx}</h2>`
+                        createParamDropdown(document.getElementById(root), name, nrpn.options, val => nrpn.send(val, x => x))
+                    }
                     else
                         createKnob(document.getElementById(root), nrpn.name, nrpn.send, null, valueFormatter)
                 })
+                document.getElementById('short-name-list').innerHTML = Object.keys(shortNames).map(shortName => {
+                    return `${shortNames[shortName].name}${' '.repeat(40 - shortNames[shortName].name.length)}: ${shortName}`
+                }).join('\n')
             })
+
+        function setParamByShortName(shortName, value) {
+            const nrpn = shortNames[shortName]
+            if (!nrpn)
+                return false
+            if (isNaN(Number(value)))
+                value = nrpn.options.indexOf(value) / Math.floor(nrpn.options.length - 1)
+            else
+                value = Number(value)
+            nrpn.send(value)
+            return true
+        }
+
+        function sendAutomation() {
+            clearNrpnCache()
+            let output = []
+            document.getElementById('automation-output').innerHTML = 'Executing...'
+            document.getElementById('automation').value
+                .split('\n').map(x => x.trim()).filter(x => x !== '' && x[0] !== '#')
+                .forEach(x => {
+                    const [param, value] = x.split('=').map(x => x.trim())
+                    if (value !== undefined) {
+                        output.push(`set ${value} -> ${param}`)
+                        if (!setParamByShortName(param, value))
+                            output.push('Unknown parameter name')
+                    }
+                    else {
+                        output.push('Parsing error: ' + x)
+                    }
+                })
+            setTimeout(() => document.getElementById('automation-output').innerHTML = output.join('\n'), 200)
+        }
+
+        // Clearing cache might be needed if values have been manually changed on Micron
+        function clearNrpnCache() {
+            nrpns.forEach(x => x.clearCache())
+        }
     </script>
 </body>
 
