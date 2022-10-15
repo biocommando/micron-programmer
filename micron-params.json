@@ -534,8 +534,8 @@
             "tmin": 0,
             "tmax": 1,
             "options": [
-                "off",
-                "on"
+                "on",
+                "off"
             ]
         },
         {
@@ -633,8 +633,8 @@
             "tmin": 0,
             "tmax": 1,
             "options": [
-                "off",
-                "on"
+                "on",
+                "off"
             ]
         },
         {
@@ -726,8 +726,8 @@
             "tmin": 0,
             "tmax": 1,
             "options": [
-                "off",
-                "on"
+                "on",
+                "off"
             ]
         },
         {
