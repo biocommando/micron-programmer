@@ -5,25 +5,157 @@
     <title>Micron/MiniAk editor</title>
     <link rel="stylesheet" href="knobs.css">
     <style>
-        #controls {
-            /*no select*/
-            -webkit-user-select: none;
-            /* Safari */
-            -moz-user-select: none;
-            /* Firefox */
-            -ms-user-select: none;
-            /* IE10+/Edge */
-            user-select: none;
-            /* Standard */
-        }
+/* Base Styling & Eye-Strain Mitigation */
+body {
+    background-color: #1a1c23; /* Softer, low-strain charcoal background */
+    color: #f1f3f9;            /* High-contrast crisp off-white text */
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 25px;
+    margin: 0;
+}
 
-        .param-dropdown {
-            display: inline-block;
-            border: 1px solid black;
-            font-weight: bold;
-            padding: 15px;
-            margin: 15px;
-        }
+#controls {
+    max-width: 1200px;
+    margin: 0 auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+/* Highly Legible Headers */
+h1 {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    color: #ffb703; /* Industrial high-visibility amber gold */
+    background-color: #242836; /* Distinct heading backdrop anchor */
+    padding: 10px 16px;
+    border-radius: 6px;
+    border-left: 5px solid #ffb703;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Controls & Dropdowns */
+select, button {
+    background-color: #242836;
+    color: #ffffff;
+    border: 2px solid #3d455c; /* Highly defined borders */
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+select:focus, button:hover {
+    border-color: #ffb703;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
+}
+
+button:active {
+    background-color: #ffb703;
+    color: #1a1c23;
+}
+
+/* Modular Enclosure Boxes */
+.controls-box, .param-dropdown-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    background-color: #2b3042; /* Elevated hardware chassis color */
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #3d455c;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Knob Structural Container */
+.knob-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110px; /* Expanded slightly for legibility space */
+    gap: 6px;
+}
+
+.knob-container span {
+    display: block;
+    user-select: none;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+}
+
+/* Flat/Black Knob Contrast Fix */
+.knob {
+    width: 49px;
+    height: 49px; 
+    margin: 5px 0;
+    background-image: url("knob.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    touch-action: none;
+    
+    /* Adds a silver aluminum high-contrast accent ring around your flat black image */
+    border-radius: 50%;
+    outline: 3px solid #4e5775;
+    box-shadow: 0 0 0 5px #1a1c23, 0 6px 12px rgba(0,0,0,0.5);
+}
+
+/* Static Label (Moved to the very bottom via order: 2) */
+.knob-title {
+    color: #a0a6be;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    margin-top: 4px;
+    order: 2; 
+}
+
+/* Dynamic Value OLED "Screen" (Moved below the knob via order: 1) */
+[id$="-label"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #0d0e12;  /* Deep glass-black screen background */
+    color: #ffb703;             /* Glowing retro-synth amber values */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;            /* Increased size for high legibility */
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 4px;
+    border: 1px solid #3d455c;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255,255,255,0.1);
+    letter-spacing: 0.02rem;
+    order: 1; 
+    min-height: 28px;
+}
+
+/* Param Card Modules */
+.param-dropdown {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: #242836;
+    border: 2px solid #3d455c;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #a0a6be;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.param-dropdown select {
+    width: 100%;
+}
     </style>
 </head>
 
@@ -34,25 +166,25 @@
             onchange="midi.setDevice(document.getElementById('midi-device-select').value, ()=>{})"></select>
         <button onclick="clearNrpnCache()">Clear cached values</button>
         <h1>Misc</h1>
-        <div id="controls-misc"></div>
+        <div class="controls-box" id="controls-misc"></div>
         <h1>Mixer</h1>
-        <div id="controls-lev"></div>
+        <div class="controls-box" id="controls-lev"></div>
         <h1>Oscillator</h1>
-        <div id="controls-osc"></div>
+        <div class="controls-box" id="controls-osc"></div>
         <h1>Filter</h1>
-        <div id="controls-filter"></div>
+        <div class="controls-box" id="controls-filter"></div>
         <h1>Envelope</h1>
-        <div id="controls-env"></div>
+        <div class="controls-box" id="controls-env"></div>
         <h1>LFO</h1>
-        <div id="controls-lfo"></div>
+        <div class="controls-box" id="controls-lfo"></div>
         <h1>FX</h1>
-        <div id="controls-fx"></div>
+        <div class="controls-box" id="controls-fx"></div>
         <h1>Modulation</h1>
-        <div id="controls-mod-matrix"></div>
+        <div class="controls-box" id="controls-mod-matrix"></div>
         <h1>Tracking</h1>
-        <div id="controls-tracking"></div>
+        <div class="controls-box" id="controls-tracking"></div>
         <h1>Arpeggiator</h1>
-        <div id="controls-arp"></div>
+        <div class="controls-box" id="controls-arp"></div>
     </div>
     <h1>Automation editor</h1>
     <div>
