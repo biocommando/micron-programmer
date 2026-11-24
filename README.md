@@ -70,7 +70,7 @@ The program level is set from an estimate of the patch's loudness, so patches co
 
 ## About
 
-The first version of the editor was written by hand. Since then it has been improved with AI assistance, and the UI styles are AI-generated as well.
+The first version of the editor was written by hand. Since then it has been improved with AI assistance.
 
 ## Running locally
 
