@@ -237,6 +237,7 @@ drle=0.5
                         shortName = '_' + shortName
                     shortNames[shortName] = nrpn
                     nrpn.shortName = shortName
+                    nrpn.control = {}
 
                     let valueFormatter = rangeFormatter(nrpn.getRange().min, nrpn.getRange().max, Math.floor)
                     if (nrpn.options)
@@ -263,10 +264,12 @@ drle=0.5
                     if (name.match(/patch cable \d+? (source|destination)/)) {
                         if (name.endsWith('source'))
                             document.getElementById('controls-mod-matrix').innerHTML += `<h2>Modulation #${++modMatrixPatchCableIdx}</h2>`
-                        createParamDropdown(document.getElementById(root), name, nrpn.options, val => nrpn.send(val, x => x))
+                        nrpn.control.id = createParamDropdown(document.getElementById(root), name, nrpn.options, val => nrpn.send(val, x => x))
+                        nrpn.control.type = 'dropdown'
+                    } else {
+                        nrpn.control.id = createKnob(document.getElementById(root), nrpn.name, nrpn.send, null, valueFormatter)
+                        nrpn.control.type = 'knob'
                     }
-                    else
-                        createKnob(document.getElementById(root), nrpn.name, nrpn.send, null, valueFormatter)
                 })
                 document.getElementById('short-name-list').innerHTML = Object.keys(shortNames).map(shortName => {
                     return `${shortNames[shortName].name}${' '.repeat(40 - shortNames[shortName].name.length)}: ${shortName}`
@@ -277,11 +280,20 @@ drle=0.5
             const nrpn = shortNames[shortName]
             if (!nrpn)
                 return false
-            if (isNaN(Number(value)))
-                value = nrpn.options.indexOf(value) / Math.floor(nrpn.options.length - 1)
-            else
+            let option = 0
+            if (isNaN(Number(value))) {
+                option = nrpn.options.indexOf(value)
+                value = option / Math.floor(nrpn.options.length - 1)
+            } else
                 value = Number(value)
             nrpn.send(value)
+            if (nrpn.control.type === 'knob') {
+                knobState.states[nrpn.control.id].value = value
+                updateKnobElement(nrpn.control.id)
+            } else {
+                const el = document.getElementById(nrpn.control.id)
+                el.value = option
+            }
             return true
         }
 
@@ -302,7 +314,9 @@ drle=0.5
                         output.push('Parsing error: ' + x)
                     }
                 })
-            setTimeout(() => document.getElementById('automation-output').innerHTML = output.join('\n'), 200)
+            setTimeout(() => {
+                document.getElementById('automation-output').innerHTML = output.join('\n')
+            }, 200)
         }
 
         // Clearing cache might be needed if values have been manually changed on Micron

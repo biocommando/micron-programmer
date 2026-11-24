@@ -4,11 +4,18 @@
  */
 
 var knobState = {mouseDownKnob: undefined, states: {}, knobCount: 0};
+function getScreenYForEvent(event) {
+	if (!event.screenY && !event.targetTouches)
+		return
+	return event.screenY ? event.screenY : event.targetTouches[0].screenY;
+}
+
 function bindKnob(id) {
 	var el = document.getElementById(id);
-	var mouseDown = (event) => { 
-		//console.log(event);
-		knobState.originalPos = event.screenY ? event.screenY : event.targetTouches[0].screenY;
+	var mouseDown = (event) => {
+		var y = getScreenYForEvent(event)
+		if (!y) return
+		knobState.originalPos = y;
 		knobState.originalValue = knobState.states[event.target.id].value;
 		knobState.mouseDownKnob = event.target.id;
 	};
@@ -31,7 +38,9 @@ document.addEventListener('touchend', mouseUp);
 
 var mouseMove = (event) => { 		
 	if(knobState.mouseDownKnob) {
-		var relativeChange = (knobState.originalPos - (event.screenY ? event.screenY : event.targetTouches[0].screenY)) / 256;
+		var y = getScreenYForEvent(event)
+		if (!y) return
+		var relativeChange = (knobState.originalPos - y) / 256;
 		var value = knobState.originalValue + relativeChange;
 		value = Math.min(Math.max(0, value), 1);
 		knobState.states[knobState.mouseDownKnob].value = value;
