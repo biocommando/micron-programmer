@@ -68,6 +68,10 @@ The sound types are **bass**, **lead**, **pad** (soft, slow, subtle), **atmo** (
 
 The program level is set from an estimate of the patch's loudness, so patches come out at a similar volume. **Modulation %** scales the LFO effects the sliders don't control. The same sound type and seed always give the same patch, so you can note good seeds down.
 
+## About
+
+The first version of the editor was written by hand. Since then it has been improved with AI assistance, and the UI styles are AI-generated as well.
+
 ## Running locally
 
 The editor is plain HTML and JavaScript with no build step. It loads its parameter list with `fetch`, so open it through a local web server (for example `npx serve` or `python -m http.server`), not straight from the file system.
