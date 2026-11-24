@@ -156,6 +156,71 @@ button:active {
 .param-dropdown select {
     width: 100%;
 }
+
+/* Automation presets */
+.preset-panel {
+    background-color: #2b3042;
+    border: 2px solid #3d455c;
+    border-radius: 10px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+}
+
+#preset-description {
+    color: #a0a6be;
+    max-width: 800px;
+}
+
+#preset-params {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 15px 0;
+}
+
+.preset-param {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: #242836;
+    border: 2px solid #3d455c;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #a0a6be;
+    min-width: 140px;
+}
+
+.preset-param-bool {
+    justify-content: space-between;
+}
+
+.preset-param input[type=number], #automation {
+    background-color: #0d0e12;
+    color: #ffb703;
+    border: 1px solid #3d455c;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+}
+
+.preset-param input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ffb703;
+}
+
+.preset-param select {
+    padding: 6px 8px;
+}
+
+.automation-help {
+    color: #a0a6be;
+    font-size: 0.9rem;
+}
     </style>
 </head>
 
@@ -188,7 +253,21 @@ button:active {
     </div>
     <h1>Automation editor</h1>
     <div>
-        <textarea id="automation" rows="10" cols="40">
+        <div class="preset-panel">
+            <select id="preset-select"></select>
+            <p id="preset-description"></p>
+            <div id="preset-params"></div>
+            <button onclick="automationPresets.generate(false)">Replace script</button>
+            <button onclick="automationPresets.generate(true)">Append to script</button>
+        </div>
+        <p class="automation-help">
+            Syntax: <code>name = 0..1</code> (normalized), <code>name = option name</code>,
+            or <code>name := value</code> (native Micron value, e.g. <code>fi1fr := 512</code>).
+            Envelope and portamento times also accept <code>ms</code>/<code>s</code> (<code>en1atti := 250ms</code>),
+            filter frequencies and LFO/S&amp;H rates <code>Hz</code>/<code>kHz</code> (<code>fi1fr := 1.2kHz</code>, <code>lf1rafr := 4Hz</code>).
+            Text after <code>#</code> is a comment.
+        </p>
+        <textarea id="automation" rows="20" cols="60">
 # Drive type
 drty=compressor
 # Drive level
@@ -203,9 +282,11 @@ drle=0.5
             <pre id="short-name-list"></pre>
         </details>
     </div>
+    <script src="micron-units.js"></script>
     <script src="midi.js"></script>
     <script src="knobs.js"></script>
     <script src="params-dropdown.js"></script>
+    <script src="automation-presets.js"></script>
     <script>
         midi.getDevices(devices => {
             let html = devices.map(dev => `<option value="${dev.name}">${dev.name}</option>`).join('')
@@ -242,6 +323,11 @@ drle=0.5
                     let valueFormatter = rangeFormatter(nrpn.getRange().min, nrpn.getRange().max, Math.floor)
                     if (nrpn.options)
                         valueFormatter = optionsFormatter(nrpn.options)
+                    const unit = micronUnits.forParam(nrpn.name)
+                    if (unit) {
+                        const { min, max } = nrpn.getRange()
+                        valueFormatter = value => unit.format(unit.fromRaw(Math.floor(min + (max - min) * value)))
+                    }
                     let root = 'controls-misc'
                     if (name.endsWith(' level') || name.endsWith(' balance'))
                         root = 'controls-lev'
@@ -271,30 +357,50 @@ drle=0.5
                         nrpn.control.type = 'knob'
                     }
                 })
+                automationPresets.init(json.optionref)
                 document.getElementById('short-name-list').innerHTML = Object.keys(shortNames).map(shortName => {
                     return `${shortNames[shortName].name}${' '.repeat(40 - shortNames[shortName].name.length)}: ${shortName}`
                 }).join('\n')
             })
 
-        function setParamByShortName(shortName, value) {
+        // Returns { error } on failure, { nrpn, sent } (NRPN number and native value) on success.
+        // native=false: numeric value is normalized 0..1. native=true: numeric value is in Micron units.
+        // Non-numeric values are option names in both cases.
+        function setParamByShortName(shortName, value, native) {
             const nrpn = shortNames[shortName]
             if (!nrpn)
-                return false
-            let option = 0
-            if (isNaN(Number(value))) {
-                option = nrpn.options.indexOf(value)
-                value = option / Math.floor(nrpn.options.length - 1)
-            } else
-                value = Number(value)
-            nrpn.send(value)
+                return { error: 'Unknown parameter name' }
+            const { min, max } = nrpn.getRange()
+            let nativeValue
+            const unit = micronUnits.forParam(nrpn.name)
+            const unitValue = unit ? unit.parse(value) : undefined
+            if (unitValue !== undefined) {
+                nativeValue = unit.toRaw(unitValue)
+            } else if (micronUnits.isUnitValue(value)) {
+                return { error: 'Wrong unit for this parameter (ms/s: envelope and portamento times, Hz/kHz: filter frequency, LFO and S&H rate)' }
+            } else if (isNaN(Number(value))) {
+                if (!nrpn.options)
+                    return { error: 'Parameter has no named options, use a number' }
+                const option = nrpn.options.indexOf(value)
+                if (option < 0)
+                    return { error: `Unknown option '${value}'. Valid: ${nrpn.options.join(', ')}` }
+                nativeValue = min + option
+            } else if (native) {
+                nativeValue = Math.round(Number(value))
+            } else {
+                // epsilon guards against float error flooring e.g. 2.9999 down to 2
+                nativeValue = Math.floor(min + (max - min) * Number(value) + 1e-9)
+            }
+            nativeValue = Math.min(max, Math.max(min, nativeValue))
+            nrpn.send(nativeValue, x => x)
             if (nrpn.control.type === 'knob') {
-                knobState.states[nrpn.control.id].value = value
+                knobState.states[nrpn.control.id].value = (nativeValue - min) / (max - min)
                 updateKnobElement(nrpn.control.id)
             } else {
-                const el = document.getElementById(nrpn.control.id)
-                el.value = option
+                document.getElementById(nrpn.control.id).value = nativeValue - min
             }
-            return true
+            const note = unit ? ` = ${unit.format(unit.fromRaw(nativeValue))}` : ''
+            return { sent: nativeValue + note, nrpn: nrpn.num }
         }
 
         function sendAutomation() {
@@ -302,20 +408,25 @@ drle=0.5
             let output = []
             document.getElementById('automation-output').innerHTML = 'Executing...'
             document.getElementById('automation').value
-                .split('\n').map(x => x.trim()).filter(x => x !== '' && x[0] !== '#')
+                .split('\n').map(x => x.replace(/#.*$/, '').trim()).filter(x => x !== '')
                 .forEach(x => {
-                    const [param, value] = x.split('=').map(x => x.trim())
-                    if (value !== undefined) {
-                        output.push(`set ${value} -> ${param}`)
-                        if (!setParamByShortName(param, value))
-                            output.push('Unknown parameter name')
+                    const match = x.match(/^([^:=\s]+)\s*(:?=)\s*(.+)$/)
+                    if (match) {
+                        const [, param, op, value] = match
+                        const native = op === ':='
+                        const result = setParamByShortName(param, value, native)
+                        const line = `set ${value}${native ? ' (native)' : ''} -> ${param}`
+                        if (result.error)
+                            output.push(line, '  ' + result.error)
+                        else
+                            output.push(`${line}   [nrpn ${result.nrpn} = ${result.sent}]`)
                     }
                     else {
                         output.push('Parsing error: ' + x)
                     }
                 })
             setTimeout(() => {
-                document.getElementById('automation-output').innerHTML = output.join('\n')
+                document.getElementById('automation-output').textContent = output.join('\n')
             }, 200)
         }
 

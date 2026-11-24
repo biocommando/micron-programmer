@@ -52,10 +52,13 @@ function createNrpnParam (num) {
             cachedValue = value
 
             const cc = (ccnum, ccval) => [0xB0 | ch, ccnum, ccval]
+            // Order matters on the Micron (verified on hardware):
+            // - parameter number: LSB (98) before MSB (99). The usual 99 -> 98 order does not work.
+            // - value: MSB (6) before LSB (38), otherwise the low 7 bits get lost.
             midi.midiCmd(cc(98, num & 0x7F))
             midi.midiCmd(cc(99, (num >> 7) & 0x7F))
-            midi.midiCmd(cc(38, value & 0x7F))
             midi.midiCmd(cc(6, (value >> 7) & 0x7F))
+            midi.midiCmd(cc(38, value & 0x7F))
         },
         name: 'unknown',
         getRange: () => range,
@@ -67,6 +70,7 @@ function mapNrpnParamArray(arr) {
     return arr.map(param => {
         const nrpn = createNrpnParam(Number(param.num))
         nrpn.name = param.name
+        nrpn.num = Number(param.num)
         nrpn.options = param.options
         const range = nrpn.getRange()
         range.min = Number(param.tmin)
