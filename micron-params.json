@@ -1592,54 +1592,6 @@
                 "x12",
                 "x16"
             ]
-        },
-        {
-            "num": 512,
-            "name": "arpeggiator pattern",
-            "tmin": 0,
-            "tmax": 31
-        },
-        {
-            "num": 513,
-            "name": "arpeggiator pattern multiplier",
-            "tmin": 0,
-            "tmax": 6
-        },
-        {
-            "num": 514,
-            "name": "arpeggiator length",
-            "tmin": 0,
-            "tmax": 14
-        },
-        {
-            "num": 515,
-            "name": "arpeggiator octave range",
-            "tmin": 0,
-            "tmax": 4
-        },
-        {
-            "num": 516,
-            "name": "arpeggiator octave span",
-            "tmin": 0,
-            "tmax": 2
-        },
-        {
-            "num": 517,
-            "name": "arpeggiator note order",
-            "tmin": 0,
-            "tmax": 5
-        },
-        {
-            "num": 518,
-            "name": "arpeggiator enabled",
-            "tmin": 0,
-            "tmax": 2
-        },
-        {
-            "num": 519,
-            "name": "arpeggiator program tempo",
-            "tmin": 500,
-            "tmax": 2500
         }
     ],
     "optionref": {

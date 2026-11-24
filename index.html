@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <title>Micron/MiniAk editor</title>
     <link rel="stylesheet" href="knobs.css">
     <style>
@@ -207,6 +208,27 @@ button:active {
     font-size: 13px;
 }
 
+.preset-param-row {
+    display: flex;
+    gap: 6px;
+}
+
+.preset-param-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+.preset-roll {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+}
+
+.preset-roll svg {
+    width: 18px;
+    height: 18px;
+}
+
 .preset-param input[type=checkbox] {
     width: 18px;
     height: 18px;
@@ -221,6 +243,10 @@ button:active {
     color: #a0a6be;
     font-size: 0.9rem;
 }
+
+.modulation-header {
+    flex: stretch;
+}
     </style>
 </head>
 
@@ -228,7 +254,8 @@ button:active {
     <div id="controls">
         <h1>Midi device select</h1>
         <select id="midi-device-select"
-            onchange="midi.setDevice(document.getElementById('midi-device-select').value, ()=>{})"></select>
+            onchange="selectMidiDevice(this.value)"></select>
+        <select id="midi-channel-select" title="MIDI channel" onchange="setMidiChannel(Number(this.value))"></select>
         <button onclick="clearNrpnCache()">Clear cached values</button>
         <h1>Misc</h1>
         <div class="controls-box" id="controls-misc"></div>
@@ -248,8 +275,6 @@ button:active {
         <div class="controls-box" id="controls-mod-matrix"></div>
         <h1>Tracking</h1>
         <div class="controls-box" id="controls-tracking"></div>
-        <h1>Arpeggiator</h1>
-        <div class="controls-box" id="controls-arp"></div>
     </div>
     <h1>Automation editor</h1>
     <div>
@@ -259,6 +284,7 @@ button:active {
             <div id="preset-params"></div>
             <button onclick="automationPresets.generate(false)">Replace script</button>
             <button onclick="automationPresets.generate(true)">Append to script</button>
+            <button onclick="automationPresets.generate(false); sendAutomation()">Replace &amp; execute</button>
         </div>
         <p class="automation-help">
             Syntax: <code>name = 0..1</code> (normalized), <code>name = option name</code>,
@@ -273,10 +299,10 @@ drty=compressor
 # Drive level
 drle=0.5
         </textarea>
-        <pre id="automation-output"></pre>
         <div>
             <button onclick="sendAutomation()">Execute</button>
         </div>
+        <pre id="automation-output"></pre>
         <details>
             <summary>List of short names</summary>
             <pre id="short-name-list"></pre>
@@ -291,8 +317,33 @@ drle=0.5
         midi.getDevices(devices => {
             let html = devices.map(dev => `<option value="${dev.name}">${dev.name}</option>`).join('')
             html = '<option>select...</option>' + html
-            document.getElementById('midi-device-select').innerHTML = html
+            const sel = document.getElementById('midi-device-select')
+            sel.innerHTML = html
+            // Reselect the last used device if it's connected
+            const saved = localStorage.getItem('midiDevice')
+            if (saved !== null && devices.some(d => d.name === saved)) {
+                sel.value = saved
+                selectMidiDevice(saved)
+            }
         })
+        function selectMidiDevice(name) {
+            midi.setDevice(name, found => {
+                if (found) localStorage.setItem('midiDevice', name)
+            })
+        }
+        function setMidiChannel(ch) {
+            midi.channel = ch
+            localStorage.setItem('midiChannel', ch)
+            // Cached values were sent on the old channel
+            nrpns.forEach(x => x.clearCache())
+        }
+        {
+            const sel = document.getElementById('midi-channel-select')
+            sel.innerHTML = Array.from({ length: 16 }, (_, i) => `<option value="${i}">Channel ${i + 1}</option>`).join('')
+            const saved = Number(localStorage.getItem('midiChannel'))
+            midi.channel = saved >= 0 && saved < 16 ? saved : 0
+            sel.value = midi.channel
+        }
         let nrpns = [], shortNames = {}
         fetch('micron-params.json')
             .then(x => x.json())
@@ -345,11 +396,9 @@ drle=0.5
                         root = 'controls-mod-matrix'
                     if (name.startsWith('tracking '))
                         root = 'controls-tracking'
-                    if (name.startsWith('arpeggiator '))
-                        root = 'controls-arp'
                     if (name.match(/patch cable \d+? (source|destination)/)) {
                         if (name.endsWith('source'))
-                            document.getElementById('controls-mod-matrix').innerHTML += `<h2>Modulation #${++modMatrixPatchCableIdx}</h2>`
+                            document.getElementById('controls-mod-matrix').innerHTML += `<h2 class="modulation-header">Modulation #${++modMatrixPatchCableIdx}</h2>`
                         nrpn.control.id = createParamDropdown(document.getElementById(root), name, nrpn.options, val => nrpn.send(val, x => x))
                         nrpn.control.type = 'dropdown'
                     } else {

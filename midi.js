@@ -1,5 +1,6 @@
 // Copyrights 2022 by Joonas Salonpää. MIT license
 const midi = {
+    channel: 0, // 0-15, i.e. MIDI channels 1-16
     getDevices: function (callback) {
         if (this.devices !== undefined) {
             callback(this.devices);
@@ -31,16 +32,15 @@ const midi = {
         }
     },
     midiCmd: function (cmd) {
+        //console.log(cmd)
         setTimeout(() => this.device.send(cmd), 0);
     }
 }
 
 function createNrpnParam (num) {
-    let ch = 0
     const range = {min:0, max:100}
     let cachedValue = undefined
     return {
-        setChannel: c => ch = c,
         send: (value, scaler) => {
             value = scaler ? scaler(value) : range.min + (range.max - range.min) * value
             value = Math.floor(value)
@@ -51,12 +51,9 @@ function createNrpnParam (num) {
                 return
             cachedValue = value
 
-            const cc = (ccnum, ccval) => [0xB0 | ch, ccnum, ccval]
-            // Order matters on the Micron (verified on hardware):
-            // - parameter number: LSB (98) before MSB (99). The usual 99 -> 98 order does not work.
-            // - value: MSB (6) before LSB (38), otherwise the low 7 bits get lost.
-            midi.midiCmd(cc(98, num & 0x7F))
+            const cc = (ccnum, ccval) => [0xB0 | midi.channel, ccnum, ccval]
             midi.midiCmd(cc(99, (num >> 7) & 0x7F))
+            midi.midiCmd(cc(98, num & 0x7F))
             midi.midiCmd(cc(6, (value >> 7) & 0x7F))
             midi.midiCmd(cc(38, value & 0x7F))
         },
